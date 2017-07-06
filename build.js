@@ -11,7 +11,6 @@ const sourcemaps = require('rollup-plugin-sourcemaps');
 
 const inlineResources = require('./inline-resources');
 
-
 const libName = require('./package.json').name;
 const rootFolder = path.join(__dirname);
 const compilationFolder = path.join(rootFolder, 'out-tsc');
@@ -70,21 +69,6 @@ return Promise.resolve()
       ]
     };
 
-    // UMD bundle.
-    const umdConfig = Object.assign({}, rollupBaseConfig, {
-      entry: es5Entry,
-      dest: path.join(distFolder, `bundles`, `${libName}.umd.js`),
-      format: 'umd',
-    });
-
-    // Minified UMD bundle.
-    const minifiedUmdConfig = Object.assign({}, rollupBaseConfig, {
-      entry: es5Entry,
-      dest: path.join(distFolder, `bundles`, `${libName}.umd.min.js`),
-      format: 'umd',
-      plugins: rollupBaseConfig.plugins.concat([uglify({})])
-    });
-
     // ESM+ES5 flat module bundle.
     const fesm5config = Object.assign({}, rollupBaseConfig, {
       entry: es5Entry,
@@ -100,8 +84,6 @@ return Promise.resolve()
     });
 
     const allBundles = [
-      umdConfig,
-      minifiedUmdConfig,
       fesm5config,
       fesm2015config
     ].map(cfg => rollup.rollup(cfg).then(bundle => bundle.write(cfg)));
@@ -121,7 +103,6 @@ return Promise.resolve()
     console.error(e);
     process.exit(1);
   });
-
 
 // Copy files maintaining relative paths.
 function _relativeCopy(fileGlob, from, to) {

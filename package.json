@@ -2,7 +2,6 @@
   "name": "quickstart-lib",
   "version": "1.0.0",
   "description": "Library QuickStart package.json from the documentation, supplemented with testing support",
-  "main": "./bundles/quickstart-lib.umd.js",
   "module": "./quickstart-lib.es5.js",
   "es2015": "./quickstart-lib.js",
   "typings": "./quickstart-lib.d.ts",
@@ -58,6 +57,7 @@
     "karma-html-reporter": "^0.2.7",
     "karma-jasmine": "^1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "less": "^2.7.2",
     "lite-server": "^2.2.2",
     "rimraf": "^2.6.1",
     "rollup": "^0.42.0",
@@ -69,5 +69,9 @@
     "tslint": "^4.4.2",
     "typescript": "~2.3.0",
     "zone.js": "^0.8.4"
+  },
+  "dependencies": {
+    "less": "^2.7.2",
+    "less-plugin-npm-import": "^2.1.0"
   }
 }

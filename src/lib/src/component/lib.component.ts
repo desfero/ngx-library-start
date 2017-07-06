@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'my-lib',
   templateUrl: './lib.component.html',
-  styleUrls: ['./lib.component.css']
+  styleUrls: ['./lib.component.less']
 })
 export class LibComponent {
   name = 'Angular Library';
